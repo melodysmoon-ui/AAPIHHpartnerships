@@ -3,162 +3,190 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --green:#77956c;--green-light:#e8f0e4;--green-mid:#b5cead;
-  --coral:#eaa185;--coral-light:#faeee9;--coral-mid:#f2c8b9;
-  --mauve:#b1818e;--mauve-light:#f0e4e7;--mauve-mid:#d4a8b0;
-  --brown:#897f7a;--text:#D2A281;--slate:#526e84;--dark:#65525f;
-  --cream:#faf8f5;--border:#e8e2dd;
+  --green:#77956c;--green-light:#e8f0e4;--green-mid:#b5cead;--green-dark:#4e6847;
+  --coral:#eaa185;--coral-light:#faeee9;--coral-mid:#f2c8b9;--coral-dark:#a05535;
+  --mauve:#b1818e;--mauve-light:#f0e4e7;--mauve-mid:#d4a8b0;--mauve-dark:#7a4f5a;
+  --brown:#897f7a;--text-warm:#D2A281;--slate:#526e84;--dark:#65525f;
+  --cream:#faf8f5;--cream2:#f3ede7;--border:#e0d8d2;
   --terry:#526e84;--terry-light:#eaf0f5;--terry-mid:#a8bece;
   --melody:#77956c;--melody-light:#e8f0e4;
   --tom:#b1818e;--tom-light:#f0e4e7;
-  --ff-head:'Lato',sans-serif;--ff-body:'Lato',sans-serif;--ff-sub:'Cormorant Garamond',serif;
+  --rakhee:#897f7a;--rakhee-light:#f0ece9;
+  --sonia:#D2A281;--sonia-light:#faf0e6;
+  --ff:'Lato',sans-serif;--ff-sub:'Cormorant Garamond',serif;
 }
-body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
+body{font-family:var(--ff);background:transparent;color:#3d2e28;font-size:14px;}
 
+/* ── TOP NAV ── */
 .main-nav{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:0;}
-.nav-btn{font-family:var(--ff-head);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-  padding:10px 22px;border:none;background:transparent;color:var(--brown);cursor:pointer;
+.nav-btn{font-family:var(--ff);font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;
+  padding:11px 24px;border:none;background:transparent;color:var(--brown);cursor:pointer;
   border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;}
 .nav-btn:hover{color:#3d2e28;}
 .nav-btn.active{color:#3d2e28;border-bottom-color:#3d2e28;}
-
 .section-panel{display:none;padding:1.5rem 0;}
 .section-panel.active{display:block;}
 
-.page-header{padding:.75rem 0 1.25rem;}
-.page-header .sub{font-family:var(--ff-sub);font-weight:300;font-size:16px;color:var(--brown);}
+/* ── PAGE HEADER ── */
+.site-header{display:flex;align-items:baseline;gap:14px;padding-bottom:.875rem;border-bottom:2px solid var(--border);margin-bottom:0;}
+.site-header h1{font-family:var(--ff);font-weight:700;font-size:22px;color:#3d2e28;letter-spacing:-.01em;}
+.site-header .hsub{font-family:var(--ff-sub);font-weight:300;font-size:18px;color:var(--text-warm);}
 
-/* ── MAP (unchanged styles) ── */
-.map-grid{display:flex;flex-direction:column;gap:10px;}
-.map-row{border-radius:8px;border:1px solid var(--border);overflow:hidden;background:#fff;}
-.row-header{cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:var(--cream);}
-.row-header:hover{background:#f3ede7;}
-.row-title{font-family:var(--ff-head);font-weight:700;font-size:13px;color:#3d2e28;}
-.row-meta{font-family:var(--ff-sub);font-weight:300;font-size:13px;color:var(--brown);margin-top:2px;}
-.chev{font-size:11px;color:var(--brown);transition:transform .2s;}
-.map-row.open .chev{transform:rotate(90deg);}
-.row-body{display:none;border-top:1px solid var(--border);}
-.map-row.open .row-body{display:block;}
-.cols-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;}
-.col-cell{padding:.875rem 1rem;border-right:1px solid var(--border);font-family:var(--ff-body);font-weight:300;font-size:12.5px;line-height:1.65;color:#4a3830;}
-.col-cell:last-child{border-right:none;}
-.col-header{font-family:var(--ff-head);font-weight:700;font-size:10px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:2px solid;}
-.col-header.ct{color:var(--green);border-color:var(--green);}
-.col-header.ee{color:#c06845;border-color:var(--coral);}
-.col-header.mk{color:var(--dark);border-color:var(--mauve);}
+/* ── MAP: PRIORITY SELECTOR ── */
+.priority-selector{display:flex;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.psel-btn{flex:1;min-width:150px;padding:14px 16px;border-radius:8px;border:2px solid transparent;cursor:pointer;
+  text-align:left;transition:all .18s;background:#fff;}
+.psel-btn .ps-label{font-family:var(--ff);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.psel-btn .ps-desc{font-family:var(--ff-sub);font-weight:300;font-size:14px;line-height:1.4;}
+.psel-btn.ct-btn{border-color:var(--border);}
+.psel-btn.ct-btn:hover,.psel-btn.ct-btn.active{border-color:var(--green);background:var(--green-light);}
+.psel-btn.ct-btn .ps-label{color:var(--green-dark);}
+.psel-btn.ct-btn .ps-desc{color:var(--green-dark);}
+.psel-btn.ee-btn{border-color:var(--border);}
+.psel-btn.ee-btn:hover,.psel-btn.ee-btn.active{border-color:var(--coral);background:var(--coral-light);}
+.psel-btn.ee-btn .ps-label{color:var(--coral-dark);}
+.psel-btn.ee-btn .ps-desc{color:var(--coral-dark);}
+.psel-btn.mk-btn{border-color:var(--border);}
+.psel-btn.mk-btn:hover,.psel-btn.mk-btn.active{border-color:var(--mauve);background:var(--mauve-light);}
+.psel-btn.mk-btn .ps-label{color:var(--mauve-dark);}
+.psel-btn.mk-btn .ps-desc{color:var(--mauve-dark);}
+
+/* ── MAP: ROW ACCORDIONS ── */
+.map-section{background:#fff;border-radius:10px;border:1px solid var(--border);overflow:hidden;margin-bottom:10px;}
+.map-section-head{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.125rem;cursor:pointer;}
+.map-section-head:hover{background:var(--cream2);}
+.ms-title{font-family:var(--ff);font-weight:700;font-size:15px;color:#3d2e28;}
+.ms-sub{font-family:var(--ff-sub);font-weight:300;font-size:14px;color:var(--brown);margin-top:2px;}
+.ms-chev{font-size:13px;color:var(--brown);transition:transform .2s;}
+.map-section.open .ms-chev{transform:rotate(90deg);}
+.map-section-body{display:none;border-top:1px solid var(--border);}
+.map-section.open .map-section-body{display:block;}
+
+/* ── MAP: CONTENT AREA ── */
+.map-content{padding:1rem 1.25rem;}
+.col-stripe{border-radius:6px;padding:.75rem 1rem;margin-bottom:.75rem;}
+.col-stripe.ct{background:var(--green-light);}
+.col-stripe.ee{background:var(--coral-light);}
+.col-stripe.mk{background:var(--mauve-light);}
+.stripe-head{font-family:var(--ff);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;padding-bottom:.4rem;border-bottom:2px solid;}
+.stripe-head.ct{color:var(--green-dark);border-color:var(--green);}
+.stripe-head.ee{color:var(--coral-dark);border-color:var(--coral);}
+.stripe-head.mk{color:var(--mauve-dark);border-color:var(--mauve);}
 .subcol{margin-top:.625rem;padding-top:.5rem;border-top:1px dashed var(--border);}
-.subcol-label{font-family:var(--ff-head);font-weight:700;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--brown);margin-bottom:.25rem;}
-.partner-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.5rem;}
-.ptag{font-family:var(--ff-head);font-weight:300;font-size:10px;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:3px;background:var(--cream);border:1px solid var(--border);color:var(--brown);}
-.bul{flex-shrink:0;margin-top:5px;width:4px;height:4px;border-radius:50%;display:inline-block;}
-.li-row{font-size:12px;font-weight:300;line-height:1.55;color:#4a3830;display:flex;gap:6px;}
-.map-legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.25rem;}
-.leg-item{display:flex;align-items:center;gap:6px;font-family:var(--ff-head);font-weight:300;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#3d2e28;}
-.leg-dot{width:10px;height:10px;border-radius:50%;}
+.subcol-label{font-family:var(--ff);font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--brown);margin-bottom:.3rem;}
+.li-body{font-family:var(--ff);font-weight:300;font-size:13.5px;line-height:1.65;color:#4a3830;}
+.li-row{display:flex;gap:7px;align-items:flex-start;margin-bottom:5px;}
+.bul{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.partner-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.4rem;}
+.ptag{font-family:var(--ff);font-weight:300;font-size:11px;letter-spacing:.03em;padding:3px 10px;border-radius:3px;background:#fff;border:1px solid var(--border);color:var(--brown);}
 
 /* ── WORKFLOW ── */
-.wf-intro{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.25rem;}
-.wf-intro p{font-family:var(--ff-body);font-weight:300;font-size:13.5px;line-height:1.7;color:#4a3830;}
+.wf-intro{border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;background:var(--cream2);border:1px solid var(--border);}
+.wf-intro p{font-family:var(--ff);font-weight:300;font-size:14px;line-height:1.75;color:#4a3830;}
 
-/* OWNER LEGEND */
-.owner-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.25rem;}
-.owner-pill{display:flex;align-items:center;gap:7px;padding:5px 12px 5px 7px;border-radius:20px;border:1px solid var(--border);background:#fff;}
-.owner-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:10px;color:#fff;flex-shrink:0;}
-.owner-name{font-family:var(--ff-head);font-weight:700;font-size:12px;color:#3d2e28;}
-.owner-role{font-family:var(--ff-body);font-weight:300;font-size:11px;color:var(--brown);}
+.owner-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;}
+.owner-pill{display:flex;align-items:center;gap:8px;padding:6px 14px 6px 7px;border-radius:20px;border:1px solid var(--border);background:#fff;}
+.owner-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-weight:700;font-size:10px;color:#fff;flex-shrink:0;}
+.owner-name{font-family:var(--ff);font-weight:700;font-size:13px;color:#3d2e28;}
+.owner-role{font-family:var(--ff);font-weight:300;font-size:11.5px;color:var(--brown);}
 
-/* STEP TIMELINE */
 .wf-steps{display:flex;flex-direction:column;gap:0;}
-.wf-step{border-left:3px solid var(--border);margin-left:18px;padding:0 0 1.5rem 1.25rem;position:relative;}
+.wf-step{border-left:3px solid var(--border);margin-left:20px;padding:0 0 1.75rem 1.375rem;position:relative;}
 .wf-step:last-child{padding-bottom:0;border-left-color:transparent;}
-.step-dot{width:36px;height:36px;border-radius:50%;position:absolute;left:-19px;top:0;
+.step-dot{width:40px;height:40px;border-radius:50%;position:absolute;left:-21px;top:0;
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--ff-head);font-weight:700;font-size:13px;color:#fff;border:3px solid var(--cream);}
-.wf-step-card{border:1px solid var(--border);border-radius:8px;background:#fff;overflow:hidden;}
-.wf-step-card .wf-head{padding:.875rem 1.125rem;cursor:pointer;display:flex;align-items:flex-start;gap:10px;}
-.wf-step-card .wf-head:hover{background:var(--cream);}
+  font-family:var(--ff);font-weight:700;font-size:14px;color:#fff;border:3px solid var(--cream);}
+
+.wf-card{border:1px solid var(--border);border-radius:10px;background:#fff;overflow:hidden;}
+.wf-head{padding:1rem 1.25rem;cursor:pointer;display:flex;align-items:flex-start;gap:10px;}
+.wf-head:hover{background:var(--cream);}
 .wf-head-text{flex:1;}
-.wf-title{font-family:var(--ff-head);font-weight:700;font-size:14px;color:#3d2e28;}
-.wf-sub{font-family:var(--ff-sub);font-weight:300;font-size:13px;color:var(--brown);margin-top:2px;}
-.wf-chev{font-size:11px;color:var(--brown);transition:transform .2s;margin-top:3px;}
-.wf-step-card.open .wf-chev{transform:rotate(90deg);}
-.wf-body{display:none;padding:.875rem 1.125rem;border-top:1px solid var(--border);}
-.wf-step-card.open .wf-body{display:block;}
+.wf-title{font-family:var(--ff);font-weight:700;font-size:15px;color:#3d2e28;}
+.wf-sub{font-family:var(--ff-sub);font-weight:300;font-size:14px;color:var(--brown);margin-top:2px;}
+.wf-chev{font-size:13px;color:var(--brown);transition:transform .2s;margin-top:3px;}
+.wf-card.open .wf-chev{transform:rotate(90deg);}
+.wf-body{display:none;padding:1rem 1.25rem;border-top:1px solid var(--border);}
+.wf-card.open .wf-body{display:block;}
 
-/* OWNER TAG in step header */
-.owner-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px 3px 5px;border-radius:12px;border:1px solid var(--border);background:var(--cream);flex-shrink:0;}
-.owner-tag .ot-av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:9px;color:#fff;}
-.owner-tag .ot-name{font-family:var(--ff-head);font-weight:700;font-size:11px;color:#3d2e28;}
+.owner-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 12px 4px 5px;border-radius:14px;border:1px solid var(--border);background:var(--cream);flex-shrink:0;}
+.owner-tag .ot-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-weight:700;font-size:9px;color:#fff;}
+.owner-tag .ot-name{font-family:var(--ff);font-weight:700;font-size:12px;color:#3d2e28;}
 
-.wf-body ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
-.wf-body li{font-family:var(--ff-body);font-weight:300;font-size:13px;line-height:1.6;color:#4a3830;display:flex;gap:8px;align-items:flex-start;}
-.wf-body li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--border);flex-shrink:0;margin-top:7px;}
+.wf-body ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.wf-body li{font-family:var(--ff);font-weight:300;font-size:14px;line-height:1.65;color:#4a3830;display:flex;gap:9px;align-items:flex-start;}
+.wf-body li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--border);flex-shrink:0;margin-top:8px;}
 
-/* HANDOFF DECISION TREE */
+/* CONTEXT BOXES */
+.ctx-box{border-radius:6px;padding:.75rem 1rem;margin-top:.875rem;}
+.ctx-box.terry{background:var(--terry-light);border:1px solid var(--terry-mid);}
+.ctx-box .ctx-label{font-family:var(--ff);font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;}
+.ctx-box.terry .ctx-label{color:var(--terry);}
+.ctx-box p{font-family:var(--ff);font-weight:300;font-size:13.5px;line-height:1.6;color:#4a3830;}
+
+/* HANDOFF TABLE */
 .handoff-tree{margin-top:.875rem;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
-.handoff-header{font-family:var(--ff-head);font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:.5rem .875rem;background:var(--cream);color:var(--brown);border-bottom:1px solid var(--border);}
+.handoff-header{font-family:var(--ff);font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:.625rem 1rem;background:var(--cream2);color:var(--brown);border-bottom:1px solid var(--border);}
 .handoff-row{display:flex;align-items:stretch;border-bottom:1px solid var(--border);}
 .handoff-row:last-child{border-bottom:none;}
-.handoff-if{flex:1;padding:.625rem .875rem;font-family:var(--ff-body);font-weight:300;font-size:12.5px;line-height:1.55;color:#4a3830;border-right:1px solid var(--border);}
-.handoff-if strong{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:3px;}
-.handoff-then{width:180px;flex-shrink:0;padding:.625rem .875rem;display:flex;align-items:center;gap:8px;}
-.handoff-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:10px;color:#fff;flex-shrink:0;}
-.handoff-person{font-family:var(--ff-head);}
-.handoff-person .hp-name{font-weight:700;font-size:13px;color:#3d2e28;}
-.handoff-person .hp-action{font-weight:300;font-size:11px;color:var(--brown);line-height:1.4;}
-.handoff-row.terry-row .handoff-then{background:var(--terry-light);}
-.handoff-row.melody-row .handoff-then{background:var(--melody-light);}
-.handoff-row.tom-row .handoff-then{background:var(--tom-light);}
-.handoff-row.tom-deep-row .handoff-then{background:var(--tom-light);}
-
-.arrow-connector{display:flex;align-items:center;justify-content:center;padding:4px 0;color:var(--border);font-size:16px;}
-
-.wf-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--ff-head);font-weight:700;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:5px 12px;border-radius:3px;text-decoration:none;margin-top:.625rem;border:1px solid;cursor:pointer;}
-.wf-link.green{color:var(--green);border-color:var(--green);background:var(--green-light);}
-.wf-link.slate{color:var(--slate);border-color:var(--slate);background:#eaf0f5;}
-.wf-link.tom{color:var(--dark);border-color:var(--mauve);background:var(--tom-light);}
+.handoff-if{flex:1;padding:.75rem 1rem;font-family:var(--ff);font-weight:300;font-size:13.5px;line-height:1.55;color:#4a3830;border-right:1px solid var(--border);}
+.handoff-if strong{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:4px;}
+.handoff-then{width:190px;flex-shrink:0;padding:.75rem 1rem;display:flex;flex-direction:column;justify-content:center;gap:6px;}
+.handoff-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-weight:700;font-size:10px;color:#fff;flex-shrink:0;}
+.hp-row{display:flex;align-items:center;gap:7px;}
+.hp-name{font-family:var(--ff);font-weight:700;font-size:13px;color:#3d2e28;}
+.hp-action{font-family:var(--ff);font-weight:300;font-size:11.5px;color:var(--brown);line-height:1.35;}
+.hr-terry{background:var(--terry-light);}
+.hr-melody{background:var(--melody-light);}
+.hr-tom{background:var(--tom-light);}
+.hr-rs{background:var(--rakhee-light);}
 
 /* CHECKLIST */
-.checklist{display:flex;flex-direction:column;gap:10px;margin-top:.75rem;}
-.check-section{border:1px solid var(--border);border-radius:6px;overflow:hidden;}
-.check-section-head{padding:.5rem .875rem;font-family:var(--ff-head);font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
-.check-section-head.neutral{background:var(--cream);color:var(--brown);}
-.check-items{padding:.625rem .875rem;display:flex;flex-direction:column;gap:6px;}
-.check-item{display:flex;align-items:flex-start;gap:8px;font-family:var(--ff-body);font-weight:300;font-size:12.5px;line-height:1.55;color:#4a3830;}
-.chk{width:14px;height:14px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:1px;cursor:pointer;appearance:none;-webkit-appearance:none;}
+.checklist{display:flex;flex-direction:column;gap:10px;margin-top:.875rem;}
+.check-section{border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.check-head{padding:.625rem 1rem;font-family:var(--ff);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:var(--cream2);color:var(--brown);border-bottom:1px solid var(--border);}
+.check-items{padding:.75rem 1rem;display:flex;flex-direction:column;gap:7px;background:#fff;}
+.check-item{display:flex;align-items:flex-start;gap:9px;font-family:var(--ff);font-weight:300;font-size:14px;line-height:1.55;color:#4a3830;cursor:pointer;}
+.chk{width:15px;height:15px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:2px;cursor:pointer;appearance:none;-webkit-appearance:none;}
 .chk:checked{background:var(--brown);border-color:var(--brown);}
-.priority-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:.625rem .875rem 0;}
-.priority-card{border-radius:6px;padding:.625rem .875rem;}
-.priority-card.ct{background:var(--green-light);border:1px solid var(--green-mid);}
-.priority-card.ee{background:var(--coral-light);border:1px solid var(--coral-mid);}
-.priority-card.mk{background:var(--mauve-light);border:1px solid var(--mauve-mid);}
-.pc-label{font-family:var(--ff-head);font-weight:700;font-size:10px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.375rem;}
-.pc-label.ct{color:var(--green);}
-.pc-label.ee{color:#c06845;}
-.pc-label.mk{color:var(--dark);}
-.pc-items{font-family:var(--ff-body);font-weight:300;font-size:11.5px;line-height:1.6;color:#4a3830;}
-.agenda-block{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:.875rem 1rem;margin-top:.75rem;}
-.agenda-block .ag-title{font-family:var(--ff-head);font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--brown);margin-bottom:.625rem;}
-.agenda-item{display:flex;gap:10px;font-family:var(--ff-body);font-weight:300;font-size:12.5px;line-height:1.55;color:#4a3830;margin-bottom:.4rem;}
-.ag-time{font-family:var(--ff-head);font-weight:700;font-size:11px;color:var(--brown);white-space:nowrap;width:40px;flex-shrink:0;padding-top:1px;}
-.regions-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 .875rem .625rem;}
+.cat-label{font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin:.5rem 0 3px;}
+
+.priority-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:.75rem 1rem;background:#fff;border-bottom:1px solid var(--border);}
+.pc{border-radius:6px;padding:.625rem .875rem;}
+.pc.ct{background:var(--green-light);border:1px solid var(--green-mid);}
+.pc.ee{background:var(--coral-light);border:1px solid var(--coral-mid);}
+.pc.mk{background:var(--mauve-light);border:1px solid var(--mauve-mid);}
+.pc-lbl{font-family:var(--ff);font-weight:700;font-size:10px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.3rem;}
+.pc-lbl.ct{color:var(--green-dark);}
+.pc-lbl.ee{color:var(--coral-dark);}
+.pc-lbl.mk{color:var(--mauve-dark);}
+.pc-txt{font-family:var(--ff);font-weight:300;font-size:12px;line-height:1.6;color:#4a3830;}
+
+.regions-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:.75rem 1rem;background:#fff;}
 .region-card{border:1px solid var(--border);border-radius:6px;padding:.625rem .875rem;background:var(--cream);}
-.region-year{font-family:var(--ff-head);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:.25rem;}
-.region-states{font-family:var(--ff-head);font-weight:700;font-size:13px;color:#3d2e28;}
-.next-steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:.5rem;}
-.ns-card{border-radius:6px;padding:.75rem .875rem;border:1px solid var(--border);}
-.ns-card.ct{background:var(--green-light);border-color:var(--green-mid);}
-.ns-card.ee{background:var(--coral-light);border-color:var(--coral-mid);}
-.ns-card.mk{background:var(--mauve-light);border-color:var(--mauve-mid);}
-.ns-card.all{background:var(--cream);}
-.ns-title{font-family:var(--ff-head);font-weight:700;font-size:11.5px;color:#3d2e28;margin-bottom:3px;}
-.ns-desc{font-family:var(--ff-body);font-weight:300;font-size:11.5px;line-height:1.55;color:#4a3830;}
+.region-year{font-family:var(--ff);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:.25rem;}
+.region-states{font-family:var(--ff);font-weight:700;font-size:14px;color:#3d2e28;}
+
+.agenda-block{background:var(--cream2);border:1px solid var(--border);border-radius:6px;padding:.875rem 1rem;margin-top:.875rem;}
+.ag-title{font-family:var(--ff);font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--brown);margin-bottom:.625rem;}
+.agenda-item{display:flex;gap:12px;font-family:var(--ff);font-weight:300;font-size:13.5px;line-height:1.55;color:#4a3830;margin-bottom:.4rem;}
+.ag-time{font-family:var(--ff);font-weight:700;font-size:11px;color:var(--brown);white-space:nowrap;width:42px;flex-shrink:0;padding-top:1px;}
+
+.next-steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.875rem;}
+.ns-card{border-radius:8px;padding:.875rem 1rem;border:1px solid var(--border);}
+.ns-title{font-family:var(--ff);font-weight:700;font-size:13px;color:#3d2e28;margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.ns-desc{font-family:var(--ff);font-weight:300;font-size:13px;line-height:1.55;color:#4a3830;}
+.av-sm{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-weight:700;font-size:9px;color:#fff;flex-shrink:0;}
+
+.wf-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--ff);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:6px 14px;border-radius:4px;text-decoration:none;margin-top:.75rem;border:1px solid;cursor:pointer;}
+.wf-link.green{color:var(--green-dark);border-color:var(--green);background:var(--green-light);}
+.wf-link.slate{color:var(--slate);border-color:var(--slate);background:#eaf0f5;}
+.wf-link.tom{color:var(--mauve-dark);border-color:var(--mauve);background:var(--tom-light);}
 </style>
 
 <div style="padding:.5rem 0 0;">
-  <div style="display:flex;align-items:baseline;gap:12px;padding-bottom:.75rem;border-bottom:2px solid var(--border);margin-bottom:0;">
-    <h1 style="font-family:var(--ff-head);font-weight:700;font-size:20px;color:#3d2e28;letter-spacing:-.01em;">AAPI History Hub</h1>
-    <span style="font-family:var(--ff-sub);font-weight:300;font-size:16px;color:var(--brown);">Partnership Strategy & Workflow</span>
+  <div class="site-header">
+    <h1>AAPI History Hub</h1>
+    <span class="hsub">Partnership Strategy & Workflow</span>
   </div>
 
   <div class="main-nav">
@@ -166,100 +194,281 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
     <button class="nav-btn" onclick="switchMain('workflow',this)">Partnership Workflow</button>
   </div>
 
-  <!-- ══ MAP ══ -->
+  <!-- ══════════════════ MAP ══════════════════ -->
   <div id="sec-map" class="section-panel active">
-    <div class="page-header"><div class="sub">Strategic framework for partnership across three priority areas</div></div>
-    <div class="map-legend">
-      <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>Content Curation, Creation & Customization</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--coral)"></div>Educator Engagement & Implementation</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--mauve)"></div>Marketing & Outreach to Expand Reach</div>
+    <div style="padding:.75rem 0 1.25rem;">
+      <div style="font-family:var(--ff-sub);font-weight:300;font-size:17px;color:var(--text-warm);">Select a strategic priority to explore</div>
     </div>
-    <div class="map-grid">
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">Purpose</div><div class="row-meta">What should each partnership area help us accomplish?</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><br>Elevate national credibility, breadth, and representation of Hub content<div class="subcol"><div class="subcol-label">Regional / Local</div>Increase local relevance, adoption, and alignment to state or regional needs</div></div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><br>Build national awareness, legitimacy, and educator advocacy for the Hub<div class="subcol"><div class="subcol-label">Regional / Local</div>Drive classroom use in target regions through local systems, relationships, and supports</div></div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><br>Increase national awareness and user acquisition<div class="subcol"><div class="subcol-label">Regional / Local</div>Drive targeted adoption in priority regions</div></div>
+    <div class="priority-selector">
+      <button class="psel-btn ct-btn" onclick="selectPriority('ct',this)">
+        <div class="ps-label" style="color:var(--green-dark);">Content Curation</div>
+        <div class="ps-desc" style="color:var(--green-dark);">Creation & Customization</div>
+      </button>
+      <button class="psel-btn ee-btn" onclick="selectPriority('ee',this)">
+        <div class="ps-label" style="color:var(--coral-dark);">Educator Engagement</div>
+        <div class="ps-desc" style="color:var(--coral-dark);">& Implementation Support</div>
+      </button>
+      <button class="psel-btn mk-btn" onclick="selectPriority('mk',this)">
+        <div class="ps-label" style="color:var(--mauve-dark);">Marketing & Outreach</div>
+        <div class="ps-desc" style="color:var(--mauve-dark);">to Expand Reach</div>
+      </button>
+    </div>
+
+    <div id="map-placeholder" style="text-align:center;padding:2.5rem 1rem;background:var(--cream2);border-radius:10px;border:1px dashed var(--border);">
+      <div style="font-family:var(--ff-sub);font-weight:300;font-size:18px;color:var(--brown);">Select a priority above to explore the strategy</div>
+    </div>
+
+    <div id="map-rows" style="display:none;flex-direction:column;gap:10px;">
+
+      <!-- PURPOSE -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">Purpose</div><div class="ms-sub">What should this partnership area help us accomplish?</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-purpose-ct">
+              <div class="stripe-head ct">Content — National</div>
+              <p class="li-body">Elevate national credibility, breadth, and representation of Hub content</p>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div><p class="li-body">Increase local relevance, adoption, and alignment to state or regional needs</p></div>
+            </div>
+            <div class="col-stripe ee" id="mp-purpose-ee">
+              <div class="stripe-head ee">Educator Engagement — National</div>
+              <p class="li-body">Build national awareness, legitimacy, and educator advocacy for the Hub</p>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div><p class="li-body">Drive classroom use in target regions through local systems, relationships, and supports</p></div>
+            </div>
+            <div class="col-stripe mk" id="mp-purpose-mk">
+              <div class="stripe-head mk">Marketing — National</div>
+              <p class="li-body">Increase national awareness and user acquisition</p>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div><p class="li-body">Drive targeted adoption in priority regions</p></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">Key Strategy Activities</div><div class="row-meta">What are we doing that requires partnership support?</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div style="margin-top:.4rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--green)"></span>Vet & add content from creators with a national/broad-range focus</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Build universal entry points ("Start Here" guides, parent-facing resources)</div></div><div class="subcol"><div class="subcol-label">Regional / Local</div><div style="margin-top:.3rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--green)"></span>Curate state toolkits, curricular guides, and other local entry points</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Incorporate content from region-specific partners (museums, cultural institutions)</div></div></div></div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div style="margin-top:.4rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Identify national educator networks for advocacy/visibility</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Align national PD opportunities with universal teacher competencies</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Identify Hub Heroes nationwide</div></div><div class="subcol"><div class="subcol-label">Regional / Local</div><div style="margin-top:.3rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Build local partnerships with school districts/systems, content/PD partners</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Identify Hub Heroes in Focus Regions</div></div></div></div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div style="margin-top:.4rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>National newsletters & comms</div><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>MyHub user communications</div><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>TAAF Summit & national conferences</div></div><div class="subcol"><div class="subcol-label">Regional / Local</div>State/region-specific comms & segmentation · Local conferences</div></div>
+      <!-- KEY ACTIVITIES -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">Key Strategy Activities</div><div class="ms-sub">What are we doing that requires partnership support?</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-act-ct">
+              <div class="stripe-head ct">Content</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--green-dark);margin-bottom:.35rem;">National</div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Vet & add content from creators with a national/broad-range focus</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Build universal entry points ("Start Here" guides, parent-facing resources)</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div>
+                <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Curate state toolkits, curricular guides, and other local entry points</span></div>
+                <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Incorporate content from region-specific partners (museums, cultural institutions)</span></div>
+              </div>
+            </div>
+            <div class="col-stripe ee" id="mp-act-ee">
+              <div class="stripe-head ee">Educator Engagement</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--coral-dark);margin-bottom:.35rem;">National</div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Identify national educator networks to increase advocacy/visibility (unions, credentialing programs)</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Align national PD opportunities with universal teacher competencies</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Identify Hub Heroes nationwide</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div>
+                <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Build local partnerships with school districts/systems, content/PD partners, other local orgs</span></div>
+                <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Identify Hub Heroes in Focus Regions</span></div>
+              </div>
+            </div>
+            <div class="col-stripe mk" id="mp-act-mk">
+              <div class="stripe-head mk">Marketing</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mauve-dark);margin-bottom:.35rem;">National</div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">National newsletters & comms</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">MyHub user communications</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">TAAF Summit & national conferences</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div>
+                <span class="li-body">State/region-specific comms & segmentation · Local conferences</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">Types of Organizations</div><div class="row-meta">What kinds of organizations should we partner with?</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div><div class="partner-tags"><span class="ptag">Content & Resource Partners</span><span class="ptag">Teacher Networks & Communities</span><span class="ptag">Professional Learning Partners</span><span class="ptag">Museums & Public History</span><span class="ptag">Experiential Partners</span></div></div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div><div class="partner-tags"><span class="ptag">Teacher Network & Community Partners</span><span class="ptag">Professional Learning Partners</span><span class="ptag">District / SEA Implementation Partners</span></div></div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div><div class="partner-tags"><span class="ptag">Events & Associations</span><span class="ptag">Visibility Partners</span></div></div>
+      <!-- TYPES OF ORGS -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">Types of Organizations</div><div class="ms-sub">What kinds of organizations should we partner with?</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-orgs-ct">
+              <div class="stripe-head ct">Content</div>
+              <div class="partner-tags"><span class="ptag">Content & Resource Partners</span><span class="ptag">Teacher Networks & Communities</span><span class="ptag">Professional Learning Partners</span><span class="ptag">Museums & Public History</span><span class="ptag">Experiential Partners</span></div>
+            </div>
+            <div class="col-stripe ee" id="mp-orgs-ee">
+              <div class="stripe-head ee">Educator Engagement</div>
+              <div class="partner-tags"><span class="ptag">Teacher Network & Community Partners</span><span class="ptag">Professional Learning Partners</span><span class="ptag">District / SEA Implementation Partners</span></div>
+            </div>
+            <div class="col-stripe mk" id="mp-orgs-mk">
+              <div class="stripe-head mk">Marketing</div>
+              <div class="partner-tags"><span class="ptag">Events & Associations</span><span class="ptag">Visibility Partners</span></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">TAAF Value</div><div class="row-meta">How can we advance the partner's goals?</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div><div style="display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--green)"></span>Broader exposure and distribution of their content</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Credibility on quality via curation/vetting</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Tags and filters — ease of finding their content</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Potential commissioning in rare gap areas</div></div></div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div><div style="display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--coral)"></span>High-quality, vetted classroom-ready content to teachers</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Elevating their PD on the PL page; referrals to other offerings</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Support in aligning to standards</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>State learning guide collaboration</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Endorsement, recognition & network connections</div></div></div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div><div style="display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>Event Sponsorship / Funding</div><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>High-quality session content</div><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>Incorporate into TAAF Summit</div><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>Speaker support (content creators, district network, grantees, TAAF network)</div></div></div>
+      <!-- TAAF VALUE -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">TAAF Value</div><div class="ms-sub">How can we advance the partner's goals?</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-taaf-ct">
+              <div class="stripe-head ct">Content</div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Broader exposure and distribution of their content</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Credibility on quality via curation/vetting</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Tags and filters — ease of finding their content</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Potential commissioning in rare gap areas</span></div>
+            </div>
+            <div class="col-stripe ee" id="mp-taaf-ee">
+              <div class="stripe-head ee">Educator Engagement</div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">High-quality, vetted classroom-ready content to teachers</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Elevating their PD on the PL page; referrals to other offerings</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Support in aligning to standards</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">State learning guide collaboration</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Endorsement, recognition & network connections</span></div>
+            </div>
+            <div class="col-stripe mk" id="mp-taaf-mk">
+              <div class="stripe-head mk">Marketing</div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">Event Sponsorship / Funding</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">High-quality session content</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">Incorporate into TAAF Summit</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">Speaker support (content creators, district network, grantees, TAAF network)</span></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">Partner Value</div><div class="row-meta">How can the partnership contribute to our goals?</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div style="margin-top:.4rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--green)"></span>Time and capacity to categorize content</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Permission to host/link</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Updating Hub team on new/updated content</div></div><div class="subcol"><div class="subcol-label">Regional / Local (in addition to national)</div>State/regional expertise · Local educator insights · District connections · Stories of classroom usage</div></div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div style="margin-top:.4rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Access to educator networks (broad to affinity group)</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Advocacy, endorsement, and sharing of the Hub</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Potential to integrate into PD structures</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Hub Heroes</div></div><div class="subcol"><div class="subcol-label">Regional / Local (in addition to national)</div>District/system connections · Local trust & educator context · Hub Heroes in target regions</div></div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div style="margin-top:.4rem;display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>Access to national audiences</div><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>Visibility at scale</div></div><div class="subcol"><div class="subcol-label">Regional / Local</div>Trusted local distribution channels · Regional credibility</div></div>
+      <!-- PARTNER VALUE -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">Partner Value</div><div class="ms-sub">How can the partnership contribute to our goals?</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-pval-ct">
+              <div class="stripe-head ct">Content</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--green-dark);margin-bottom:.35rem;">National</div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Time and capacity to categorize content</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Permission to host/link</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Updating Hub team on new/updated content</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local (in addition to national)</div>
+                <span class="li-body">State/regional expertise · Local educator insights · District connections · Stories of classroom usage</span>
+              </div>
+            </div>
+            <div class="col-stripe ee" id="mp-pval-ee">
+              <div class="stripe-head ee">Educator Engagement</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--coral-dark);margin-bottom:.35rem;">National</div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Access to educator networks (broad to affinity group)</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Advocacy, endorsement, and sharing of the Hub</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Potential to integrate into PD structures and offerings</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Hub Heroes</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local (in addition to national)</div>
+                <span class="li-body">District/system connections · Local trust & educator context · Hub Heroes in target regions</span>
+              </div>
+            </div>
+            <div class="col-stripe mk" id="mp-pval-mk">
+              <div class="stripe-head mk">Marketing</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mauve-dark);margin-bottom:.35rem;">National</div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">Access to national audiences</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">Visibility at scale</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div>
+                <span class="li-body">Trusted local distribution channels · Regional credibility</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">Existing Partnership Activities</div><div class="row-meta">Things we're already doing that we can quickly integrate partners into</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div>Feature content on the Hub · Highlight content in marketing efforts</div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div>Share Hub with educator networks (newsletter, email, district resource list) · Identify Hub Heroes · Align content with state standards · Collaborate on state learning guides</div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div>Submit proposal / accept speaking slot · Existing event/conference sponsorship · Pre/post-event email to attendees via organizer</div>
+      <!-- EXISTING ACTIVITIES -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">Existing Partnership Activities</div><div class="ms-sub">Things we're already doing that partners can plug into</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-exist-ct"><div class="stripe-head ct">Content</div><span class="li-body">Feature content on the Hub · Highlight content in marketing efforts</span></div>
+            <div class="col-stripe ee" id="mp-exist-ee"><div class="stripe-head ee">Educator Engagement</div><span class="li-body">Share Hub with educator networks (newsletter, email, district resource list) · Identify Hub Heroes · Align content with state standards · Collaborate on state learning guides</span></div>
+            <div class="col-stripe mk" id="mp-exist-mk"><div class="stripe-head mk">Marketing</div><span class="li-body">Submit proposal / accept speaking slot · Existing event/conference sponsorship · Pre/post-event email to attendees via organizer</span></div>
           </div>
         </div>
       </div>
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">Exploratory Partnership Activities</div><div class="row-meta">Ideas for deeper or more exploratory engagement</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div><div style="display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--green)"></span>Commission content to fill gaps</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Co-create field trips or virtual visit lesson companions</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Co-create a multi-resource unit or collection</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Ticket/discount access for educators</div><div class="li-row"><span class="bul" style="background:var(--green)"></span>Local event series</div></div></div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div><div style="display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Engage with affinity groups</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Co-design or adapt live or async professional learning series to feature the Hub</div><div class="li-row"><span class="bul" style="background:var(--coral)"></span>Pilot / Case study on classroom or system usage</div></div></div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div><div style="display:flex;flex-direction:column;gap:5px;"><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>Engage a TAAF-sponsored speaker to join a conference</div><div class="li-row"><span class="bul" style="background:var(--mauve)"></span>Co-create a new event / conference sponsorship type</div></div></div>
+      <!-- EXPLORATORY -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">Exploratory Activities</div><div class="ms-sub">Ideas for deeper or more exploratory engagement</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-exp-ct">
+              <div class="stripe-head ct">Content</div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Commission content to fill gaps</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Co-create field trips or virtual visit lesson companions</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Co-create a multi-resource unit or collection</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Ticket/discount access for educators</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--green);"></span><span class="li-body">Local event series</span></div>
+            </div>
+            <div class="col-stripe ee" id="mp-exp-ee">
+              <div class="stripe-head ee">Educator Engagement</div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Engage with affinity groups</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Co-design or adapt live or async professional learning series to feature the Hub</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--coral);"></span><span class="li-body">Pilot / Case study on classroom or system usage</span></div>
+            </div>
+            <div class="col-stripe mk" id="mp-exp-mk">
+              <div class="stripe-head mk">Marketing</div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">Engage a TAAF-sponsored speaker to join a conference</span></div>
+              <div class="li-row"><span class="bul" style="background:var(--mauve);"></span><span class="li-body">Co-create a new event / conference sponsorship type</span></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="map-row" onclick="toggleRow(this)">
-        <div class="row-header"><div><div class="row-title">Example Partners</div><div class="row-meta">Organizations we are engaging or targeting in each area</div></div><span class="chev">›</span></div>
-        <div class="row-body">
-          <div class="cols-grid">
-            <div class="col-cell"><div class="col-header ct">Content</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div class="partner-tags" style="margin-top:.4rem;"><span class="ptag">AAEdu Project</span><span class="ptag">OCA National</span><span class="ptag">Advancing Justice Chicago</span><span class="ptag">SAADA</span><span class="ptag">DON</span><span class="ptag">Sikh Coalition</span><span class="ptag">Yuri Project</span><span class="ptag">TEPUP</span><span class="ptag">Facing History</span><span class="ptag">Gilder Lehrman</span></div><div class="subcol"><div class="subcol-label">Regional / Local</div><div class="partner-tags" style="margin-top:.3rem;"><span class="ptag">CA: UCLA Asian American Studies Center; DON (SDCOE)</span><span class="ptag">WA: Wing Luke Museum</span><span class="ptag">NJ: AAPI New Jersey</span><span class="ptag">TX: Asia Society of Texas</span></div></div></div>
-            <div class="col-cell"><div class="col-header ee">Educator Engagement</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div class="partner-tags" style="margin-top:.4rem;"><span class="ptag">NEA</span><span class="ptag">AFT</span><span class="ptag">National Council of Urban Education</span><span class="ptag">New Teacher Center</span><span class="ptag">Leading Educators</span><span class="ptag">TNTP</span><span class="ptag">AASA</span><span class="ptag">Chiefs for Change</span><span class="ptag">Council of the Great City Schools</span><span class="ptag">Teacher Colleges & Credentialing Programs</span><span class="ptag">Networks of Independent Schools</span><span class="ptag">ACTFL</span></div><div class="subcol"><div class="subcol-label">Focus Regions — 2026: CA, NJ, WA · 2027: TX, IL, VA, NY</div><div class="partner-tags" style="margin-top:.3rem;"><span class="ptag">CA: Alliance CRPS; SFUSD; OCDE</span><span class="ptag">NJ: AAPI New Jersey</span><span class="ptag">WA: Wing Luke Museum</span></div></div></div>
-            <div class="col-cell"><div class="col-header mk">Marketing</div><strong style="font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--brown);">National</strong><div class="partner-tags" style="margin-top:.4rem;"><span class="ptag">MyHub user communications</span><span class="ptag">TAAF Summit</span><span class="ptag">National Equity Project</span><span class="ptag">Teaching for Justice</span><span class="ptag">NCSS</span><span class="ptag">SXSW (2027)</span></div><div class="subcol"><div class="subcol-label">Regional / Local</div><div class="partner-tags" style="margin-top:.3rem;"><span class="ptag">CAAPLE (San Diego)</span><span class="ptag">CA Social Science Conference</span><span class="ptag">Other state/regional conferences</span></div></div></div>
+      <!-- EXAMPLE PARTNERS -->
+      <div class="map-section" onclick="toggleMapRow(this)">
+        <div class="map-section-head">
+          <div><div class="ms-title">Example Partners</div><div class="ms-sub">Organizations we are engaging or targeting</div></div>
+          <span class="ms-chev">›</span>
+        </div>
+        <div class="map-section-body">
+          <div class="map-content">
+            <div class="col-stripe ct" id="mp-ex-ct">
+              <div class="stripe-head ct">Content</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--green-dark);margin-bottom:.35rem;">National</div>
+              <div class="partner-tags"><span class="ptag">AAEdu Project</span><span class="ptag">OCA National</span><span class="ptag">Advancing Justice Chicago</span><span class="ptag">SAADA</span><span class="ptag">DON</span><span class="ptag">Sikh Coalition</span><span class="ptag">Yuri Project</span><span class="ptag">TEPUP</span><span class="ptag">Facing History</span><span class="ptag">Gilder Lehrman</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div>
+                <div class="partner-tags" style="margin-top:.3rem;"><span class="ptag">CA: UCLA Asian American Studies Center; DON (SDCOE)</span><span class="ptag">WA: Wing Luke Museum</span><span class="ptag">NJ: AAPI New Jersey</span><span class="ptag">TX: Asia Society of Texas</span></div>
+              </div>
+            </div>
+            <div class="col-stripe ee" id="mp-ex-ee">
+              <div class="stripe-head ee">Educator Engagement</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--coral-dark);margin-bottom:.35rem;">National</div>
+              <div class="partner-tags"><span class="ptag">NEA</span><span class="ptag">AFT</span><span class="ptag">National Council of Urban Education</span><span class="ptag">New Teacher Center</span><span class="ptag">Leading Educators</span><span class="ptag">TNTP</span><span class="ptag">AASA</span><span class="ptag">Chiefs for Change</span><span class="ptag">Council of the Great City Schools</span><span class="ptag">Teacher Colleges & Credentialing Programs</span><span class="ptag">Networks of Independent Schools</span><span class="ptag">ACTFL</span></div>
+              <div class="subcol"><div class="subcol-label">Focus Regions — 2026: CA, NJ, WA · 2027: TX, IL, VA, NY</div>
+                <div class="partner-tags" style="margin-top:.3rem;"><span class="ptag">CA: Alliance CRPS; SFUSD; OCDE</span><span class="ptag">NJ: AAPI New Jersey</span><span class="ptag">WA: Wing Luke Museum</span></div>
+              </div>
+            </div>
+            <div class="col-stripe mk" id="mp-ex-mk">
+              <div class="stripe-head mk">Marketing</div>
+              <div style="font-family:var(--ff);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mauve-dark);margin-bottom:.35rem;">National</div>
+              <div class="partner-tags"><span class="ptag">MyHub user communications</span><span class="ptag">TAAF Summit</span><span class="ptag">National Equity Project</span><span class="ptag">Teaching for Justice</span><span class="ptag">NCSS</span><span class="ptag">SXSW (2027)</span></div>
+              <div class="subcol"><div class="subcol-label">Regional / Local</div>
+                <div class="partner-tags" style="margin-top:.3rem;"><span class="ptag">CAAPLE (San Diego)</span><span class="ptag">CA Social Science Conference</span><span class="ptag">Other state/regional conferences</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -267,27 +476,21 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
     </div>
   </div>
 
-  <!-- ══ WORKFLOW ══ -->
+  <!-- ══════════════════ WORKFLOW ══════════════════ -->
   <div id="sec-workflow" class="section-panel">
-    <div class="page-header"><div class="sub">From first contact to strategic next steps — with team ownership at every stage</div></div>
+    <div style="padding:.75rem 0 1.25rem;"><div style="font-family:var(--ff-sub);font-weight:300;font-size:17px;color:var(--text-warm);">From first contact to strategic next steps — with team ownership at every stage</div></div>
 
     <div class="wf-intro">
-      <p>Based on the interest and engagement of an organization, the first step is to gauge whether they have the capacity and willingness to go deeper on a partnership that advances one or more of the Hub's strategic priorities in <strong style="font-weight:700;color:var(--green)">content</strong>, <strong style="font-weight:700;color:#c06845">educator engagement & implementation</strong>, or <strong style="font-weight:700;color:var(--dark)">marketing & outreach</strong>. Ownership of each relationship is determined by partner type and depth of engagement.</p>
+      <p>Based on the interest and engagement of an organization, the first step is to gauge whether they have the capacity and willingness to go deeper on a partnership that advances one or more of the Hub's strategic priorities in <strong style="font-weight:700;color:var(--green-dark)">content</strong>, <strong style="font-weight:700;color:var(--coral-dark)">educator engagement & implementation</strong>, or <strong style="font-weight:700;color:var(--mauve-dark)">marketing & outreach</strong>. Ownership of each relationship is determined by partner type and depth of engagement.</p>
     </div>
 
     <div class="owner-legend">
-      <div class="owner-pill">
-        <div class="owner-avatar" style="background:var(--terry);">T</div>
-        <div><div class="owner-name">Terry</div><div class="owner-role">Existing relationships · Conference networking · Initial triage</div></div>
-      </div>
-      <div class="owner-pill">
-        <div class="owner-avatar" style="background:var(--melody);">M</div>
-        <div><div class="owner-name">Melody</div><div class="owner-role">Content-only partners · Hub content onboarding</div></div>
-      </div>
-      <div class="owner-pill">
-        <div class="owner-avatar" style="background:var(--tom);">T</div>
-        <div><div class="owner-name">Tom</div><div class="owner-role">Educator networks · PD partners · Network sharing & deep engagement</div></div>
-      </div>
+      <div class="owner-pill"><div class="owner-avatar" style="background:var(--terry);">T</div><div><div class="owner-name">Terry</div><div class="owner-role">Grantees · Field relationships · Initial triage</div></div></div>
+      <div class="owner-pill"><div class="owner-avatar" style="background:var(--melody);">M</div><div><div class="owner-name">Melody</div><div class="owner-role">Content-only partners · Hub content onboarding</div></div></div>
+      <div class="owner-pill"><div class="owner-avatar" style="background:var(--tom);">To</div><div><div class="owner-name">Tom</div><div class="owner-role">Educator networks · PD partners · Network sharing</div></div></div>
+      <div class="owner-pill"><div class="owner-avatar" style="background:var(--rakhee);">R</div><div><div class="owner-name">Rakhee</div><div class="owner-role">Hub Heroes · Testimonials · Ambassadorship</div></div></div>
+      <div class="owner-pill"><div class="owner-avatar" style="background:var(--sonia);">S</div><div><div class="owner-name">Sonia</div><div class="owner-role">Comms · Hub Heroes · Ambassadorship</div></div></div>
+      <div class="owner-pill"><div class="owner-avatar" style="background:var(--slate);font-size:8px;">FPC</div><div><div class="owner-name">FPC Team</div><div class="owner-role">Tom, Melody, Rakhee · Social studies accelerator network</div></div></div>
     </div>
 
     <div class="wf-steps">
@@ -295,25 +498,24 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
       <!-- STEP 1 -->
       <div class="wf-step">
         <div class="step-dot" style="background:var(--terry);">1</div>
-        <div class="wf-step-card" onclick="toggleWF(this)">
+        <div class="wf-card" onclick="toggleWF(this)">
           <div class="wf-head">
-            <div class="wf-head-text">
-              <div class="wf-title">Initial Contact</div>
-              <div class="wf-sub">How a potential partner first comes onto our radar</div>
-            </div>
+            <div class="wf-head-text"><div class="wf-title">Initial Contact</div><div class="wf-sub">How a potential partner first comes onto our radar</div></div>
             <div class="owner-tag"><div class="ot-av" style="background:var(--terry);">T</div><span class="ot-name">Terry</span></div>
+            <div class="owner-tag" style="margin-left:4px;"><div class="ot-av" style="background:var(--slate);font-size:8px;">FPC</div><span class="ot-name">FPC</span></div>
             <span class="wf-chev">›</span>
           </div>
           <div class="wf-body">
             <ul>
               <li>Direct outreach — organization reaches out to the Hub proactively</li>
-              <li>Networking at a conference or sector event (Terry frequently meets potential partners here)</li>
+              <li>Networking at a conference or sector event</li>
               <li>Introduction through a prior TAAF grantee or existing partner</li>
-              <li>Random district connections through Terry's existing relationships</li>
+              <li>Random district connections surfaced through Terry's existing relationships in the field</li>
+              <li>Organizations within the FPC / Social Studies Accelerator network — Tom, Melody, or Rakhee may be the first point of contact for these</li>
             </ul>
-            <div style="margin-top:.875rem;padding:.625rem .875rem;background:var(--terry-light);border-radius:6px;border:1px solid var(--terry-mid);">
-              <div style="font-family:var(--ff-head);font-weight:700;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--terry);margin-bottom:3px;">Terry's role</div>
-              <div style="font-family:var(--ff-body);font-weight:300;font-size:12.5px;line-height:1.55;color:#4a3830;">Terry is typically the first point of contact — either because he owns the existing grantee relationship, or because he met them in the field. His job at this stage is to make the connection and assess whether there's a reason to go further.</div>
+            <div class="ctx-box terry">
+              <div class="ctx-label">Who owns first contact?</div>
+              <p>Terry is the primary first point of contact for existing grantee relationships and organizations he meets in the field. For organizations within the FPC/Social Studies Accelerator network, any FPC team member (Tom, Melody, Rakhee) may be the first point of contact and should log the connection for triage.</p>
             </div>
           </div>
         </div>
@@ -322,12 +524,9 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
       <!-- STEP 2 -->
       <div class="wf-step">
         <div class="step-dot" style="background:var(--terry);">2</div>
-        <div class="wf-step-card" onclick="toggleWF(this)">
+        <div class="wf-card" onclick="toggleWF(this)">
           <div class="wf-head">
-            <div class="wf-head-text">
-              <div class="wf-title">Share General Hub Introduction</div>
-              <div class="wf-sub">Send the Hub overview email template</div>
-            </div>
+            <div class="wf-head-text"><div class="wf-title">Share General Hub Introduction</div><div class="wf-sub">Send the Hub overview email template</div></div>
             <div class="owner-tag"><div class="ot-av" style="background:var(--terry);">T</div><span class="ot-name">Terry</span></div>
             <span class="wf-chev">›</span>
           </div>
@@ -345,12 +544,9 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
       <!-- STEP 3 -->
       <div class="wf-step">
         <div class="step-dot" style="background:var(--terry);">3</div>
-        <div class="wf-step-card open" onclick="toggleWF(this)">
+        <div class="wf-card open" onclick="toggleWF(this)">
           <div class="wf-head">
-            <div class="wf-head-text">
-              <div class="wf-title">Discovery Meeting & Assessment</div>
-              <div class="wf-sub">Understand who they are, what they can offer, and how deep they can go</div>
-            </div>
+            <div class="wf-head-text"><div class="wf-title">Discovery Meeting & Assessment</div><div class="wf-sub">Understand who they are, what they can offer, and how deep they can go</div></div>
             <div class="owner-tag"><div class="ot-av" style="background:var(--terry);">T</div><span class="ot-name">Terry</span></div>
             <span class="wf-chev">›</span>
           </div>
@@ -364,10 +560,10 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
               <div class="agenda-item"><span class="ag-time">35–45</span>Gauge depth of interest and identify 1–2 concrete next steps</div>
             </div>
 
-            <div style="margin-top:1rem;font-family:var(--ff-head);font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--brown);margin-bottom:.625rem;">Assessment Checklist</div>
+            <div style="font-family:var(--ff);font-weight:700;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--brown);margin:1rem 0 .625rem;">Assessment Checklist</div>
             <div class="checklist">
               <div class="check-section">
-                <div class="check-section-head neutral">A. Partner type</div>
+                <div class="check-head">A. Partner type</div>
                 <div class="check-items">
                   <label class="check-item"><input type="checkbox" class="chk"> Content / Resource Partner (content creators, museums, cultural institutions)</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Educator Network or Community (unions, affinity groups, teacher networks)</label>
@@ -377,7 +573,7 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
                 </div>
               </div>
               <div class="check-section">
-                <div class="check-section-head neutral">B. Existing level of engagement</div>
+                <div class="check-head">B. Existing level of engagement</div>
                 <div class="check-items">
                   <label class="check-item"><input type="checkbox" class="chk"> Current TAAF grantee</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Potential future grantee</label>
@@ -385,46 +581,50 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
                 </div>
               </div>
               <div class="check-section">
-                <div class="check-section-head neutral">C. Reach, demographic & focus region alignment</div>
+                <div class="check-head">C. Reach, demographic & focus region alignment</div>
                 <div class="check-items">
                   <label class="check-item"><input type="checkbox" class="chk"> National reach</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Regional or local reach</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Primarily serves AAPI communities or educators</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Broader general educator audience</label>
                 </div>
-                <div class="regions-grid" style="margin-top:0;">
+                <div class="regions-grid">
                   <div class="region-card"><div class="region-year">Focus Regions — 2026</div><div class="region-states">CA · NJ · WA</div></div>
                   <div class="region-card"><div class="region-year">Focus Regions — 2027</div><div class="region-states">TX · IL · VA · NY</div></div>
                 </div>
               </div>
               <div class="check-section">
-                <div class="check-section-head neutral">D. Which strategic priorities can this partner contribute to?</div>
-                <div class="priority-row">
-                  <div class="priority-card ct"><div class="pc-label ct">Content</div><div class="pc-items">Adding high-quality content to site · State toolkits · Additional curricular entry points</div></div>
-                  <div class="priority-card ee"><div class="pc-label ee">Educator Engagement</div><div class="pc-items">Access to educator audience · PD tools or services for districts · Hub Heroes / power users</div></div>
-                  <div class="priority-card mk"><div class="pc-label mk">Marketing</div><div class="pc-items">Hub Hero testimonials · Conference access · Broad educator market channels</div></div>
+                <div class="check-head">D. Which strategic priorities can this partner contribute to?</div>
+                <div class="priority-cards">
+                  <div class="pc ct"><div class="pc-lbl ct">Content</div><div class="pc-txt">Adding high-quality content · State toolkits · Additional curricular entry points</div></div>
+                  <div class="pc ee"><div class="pc-lbl ee">Educator Engagement</div><div class="pc-txt">Access to educator audience · PD tools for districts · Hub Heroes / power users</div></div>
+                  <div class="pc mk"><div class="pc-lbl mk">Marketing</div><div class="pc-txt">Hub Hero testimonials · Conference access · Broad educator market channels</div></div>
                 </div>
-                <div class="check-items" style="margin-top:.5rem;">
+                <div class="check-items">
                   <label class="check-item"><input type="checkbox" class="chk" style="accent-color:var(--green);"> Strong fit for Content priority</label>
-                  <label class="check-item"><input type="checkbox" class="chk" style="accent-color:#c06845;"> Strong fit for Educator Engagement priority</label>
+                  <label class="check-item"><input type="checkbox" class="chk" style="accent-color:var(--coral-dark);"> Strong fit for Educator Engagement priority</label>
                   <label class="check-item"><input type="checkbox" class="chk" style="accent-color:var(--mauve);"> Strong fit for Marketing & Outreach priority</label>
+                  <label class="check-item"><input type="checkbox" class="chk" style="accent-color:var(--rakhee);"> Has access to potential Hub Heroes / ambassadors</label>
                 </div>
               </div>
               <div class="check-section">
-                <div class="check-section-head neutral">E. Depth of engagement — what is this partner ready and willing to pursue?</div>
+                <div class="check-head">E. Depth of engagement — what is this partner ready and willing to pursue?</div>
                 <div class="check-items">
-                  <div style="font-family:var(--ff-head);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:3px;">Content</div>
+                  <div class="cat-label" style="color:var(--green-dark);">Content</div>
                   <label class="check-item"><input type="checkbox" class="chk"> Feature existing content on the Hub</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Collaborate on a state or regional toolkit</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Co-create a curricular unit or multi-resource collection</label>
-                  <div style="font-family:var(--ff-head);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#c06845;margin-top:.5rem;margin-bottom:3px;">Educator Engagement</div>
+                  <div class="cat-label" style="color:var(--coral-dark);margin-top:.5rem;">Educator Engagement</div>
                   <label class="check-item"><input type="checkbox" class="chk"> Share Hub with educator networks (light touch)</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Co-design a PD session or module featuring the Hub</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Identify Hub Heroes and facilitate a pilot/case study</label>
-                  <div style="font-family:var(--ff-head);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--dark);margin-top:.5rem;margin-bottom:3px;">Marketing & Outreach</div>
+                  <div class="cat-label" style="color:var(--mauve-dark);margin-top:.5rem;">Marketing & Outreach</div>
                   <label class="check-item"><input type="checkbox" class="chk"> Newsletter or comms feature to their audience</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Speaking slot or session proposal at their event</label>
                   <label class="check-item"><input type="checkbox" class="chk"> Co-create a new conference or sponsorship opportunity</label>
+                  <div class="cat-label" style="color:var(--rakhee);margin-top:.5rem;">Hub Heroes & Ambassadorship</div>
+                  <label class="check-item"><input type="checkbox" class="chk"> Provide testimonials or success stories</label>
+                  <label class="check-item"><input type="checkbox" class="chk"> Serve as a Hub Ambassador or ongoing advocate</label>
                 </div>
               </div>
             </div>
@@ -432,72 +632,69 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
         </div>
       </div>
 
-      <!-- STEP 4: HANDOFF DECISION -->
+      <!-- STEP 4: HANDOFF -->
       <div class="wf-step">
         <div class="step-dot" style="background:var(--brown);">4</div>
-        <div class="wf-step-card open" onclick="toggleWF(this)">
+        <div class="wf-card open" onclick="toggleWF(this)">
           <div class="wf-head">
-            <div class="wf-head-text">
-              <div class="wf-title">Determine Ownership & Handoff</div>
-              <div class="wf-sub">Based on partner type and depth, route to the right team member</div>
-            </div>
+            <div class="wf-head-text"><div class="wf-title">Determine Ownership & Handoff</div><div class="wf-sub">Route to the right team member based on partner type and depth</div></div>
             <span class="wf-chev">›</span>
           </div>
           <div class="wf-body">
-            <p style="font-family:var(--ff-body);font-weight:300;font-size:13px;line-height:1.6;color:#4a3830;margin-bottom:.875rem;">After the discovery meeting, Terry assesses what kind of partner this is and how deep they're likely to go — then routes accordingly.</p>
+            <p style="font-family:var(--ff);font-weight:300;font-size:14px;line-height:1.65;color:#4a3830;margin-bottom:.875rem;">After the discovery meeting, Terry (or the relevant FPC team member) assesses what kind of partner this is and how deep they're likely to go — then routes accordingly.</p>
             <div class="handoff-tree">
               <div class="handoff-header">If this partner is... → Then ownership goes to...</div>
 
-              <div class="handoff-row terry-row">
-                <div class="handoff-if">
+              <div class="handoff-row">
+                <div class="handoff-if hr-terry" style="border-color:var(--border);">
                   <strong style="color:var(--terry);">Existing grantee relationship</strong>
                   Any current TAAF grantee, regardless of partner type or depth of engagement
                 </div>
-                <div class="handoff-then">
-                  <div class="handoff-av" style="background:var(--terry);">T</div>
-                  <div class="handoff-person"><div class="hp-name">Terry</div><div class="hp-action">Retains ownership throughout</div></div>
+                <div class="handoff-then hr-terry">
+                  <div class="hp-row"><div class="handoff-av" style="background:var(--terry);">T</div><div><div class="hp-name">Terry</div><div class="hp-action">Retains ownership throughout</div></div></div>
                 </div>
               </div>
 
-              <div class="handoff-row melody-row">
-                <div class="handoff-if">
-                  <strong style="color:var(--melody);">Content partner only</strong>
-                  Their primary contribution is adding their content, resources, or materials to the Hub — no significant educator network or PD component
+              <div class="handoff-row">
+                <div class="handoff-if hr-melody">
+                  <strong style="color:var(--green-dark);">Content partner only</strong>
+                  Primary contribution is adding their content/resources to the Hub — no significant educator network or PD component
                 </div>
-                <div class="handoff-then">
-                  <div class="handoff-av" style="background:var(--melody);">M</div>
-                  <div class="handoff-person"><div class="hp-name">Melody</div><div class="hp-action">Leads content onboarding & next steps</div></div>
-                </div>
-              </div>
-
-              <div class="handoff-row tom-row">
-                <div class="handoff-if">
-                  <strong style="color:var(--tom);">Educator network / PD partner — sharing focus</strong>
-                  The main action is sharing the Hub with their educator networks (newsletter, resource list, member email) — light-touch engagement, no co-design needed
-                </div>
-                <div class="handoff-then" style="flex-direction:column;align-items:flex-start;gap:6px;">
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="handoff-av" style="background:var(--tom);">T</div>
-                    <div class="handoff-person"><div class="hp-name">Tom</div><div class="hp-action">Owns relationship & outreach</div></div>
-                  </div>
-                  <a class="wf-link tom" style="font-size:10px;padding:4px 10px;margin-top:0;" onclick="sendPrompt('Can you draft a template email and a simple sharing toolkit that an educator network partner could use to share the AAPI History Hub with their teacher members?')">Draft sharing toolkit ↗</a>
+                <div class="handoff-then hr-melody">
+                  <div class="hp-row"><div class="handoff-av" style="background:var(--melody);">M</div><div><div class="hp-name">Melody</div><div class="hp-action">Leads content onboarding & next steps</div></div></div>
                 </div>
               </div>
 
-              <div class="handoff-row tom-deep-row">
-                <div class="handoff-if">
-                  <strong style="color:var(--tom);">Deep educator engagement / PD potential</strong>
-                  Significant opportunity for co-design — e.g., co-creating a PD module, integrating Hub into coursework, running a pilot, engaging affinity groups, or district-level implementation
+              <div class="handoff-row">
+                <div class="handoff-if hr-tom">
+                  <strong style="color:var(--mauve-dark);">Educator network / PD — sharing focus</strong>
+                  Main action is sharing the Hub with their educator networks (newsletter, resource list, member email) — light-touch, no co-design needed
                 </div>
-                <div class="handoff-then" style="flex-direction:column;align-items:flex-start;gap:6px;">
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="handoff-av" style="background:var(--terry);">T</div>
-                    <div class="handoff-person"><div class="hp-name">Terry</div><div class="hp-action">+ Tom</div></div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="handoff-av" style="background:var(--tom);">T</div>
-                    <div class="handoff-person"><div class="hp-name">Tom</div><div class="hp-action">Brought in for deeper conversation</div></div>
-                  </div>
+                <div class="handoff-then hr-tom" style="flex-direction:column;align-items:flex-start;gap:6px;">
+                  <div class="hp-row"><div class="handoff-av" style="background:var(--tom);">To</div><div><div class="hp-name">Tom</div><div class="hp-action">Owns relationship & sharing toolkit</div></div></div>
+                  <a class="wf-link tom" style="font-size:11px;padding:4px 10px;margin-top:0;" onclick="sendPrompt('Can you draft a template email and a simple sharing toolkit that an educator network partner could use to share the AAPI History Hub with their teacher members?')">Draft sharing toolkit ↗</a>
+                </div>
+              </div>
+
+              <div class="handoff-row">
+                <div class="handoff-if" style="background:#fdf3ea;">
+                  <strong style="color:var(--coral-dark);">Deep educator engagement / PD potential</strong>
+                  Significant opportunity for co-design — co-creating PD modules, district-level implementation, piloting, affinity group engagement
+                </div>
+                <div class="handoff-then" style="background:#fdf3ea;flex-direction:column;align-items:flex-start;gap:6px;">
+                  <div class="hp-row"><div class="handoff-av" style="background:var(--terry);">T</div><div><div class="hp-name">Terry</div><div class="hp-action">Remains involved</div></div></div>
+                  <div class="hp-row"><div class="handoff-av" style="background:var(--tom);">To</div><div><div class="hp-name">Tom</div><div class="hp-action">Brought in for deeper conversation</div></div></div>
+                </div>
+              </div>
+
+              <div class="handoff-row">
+                <div class="handoff-if hr-rs" style="background:var(--rakhee-light);">
+                  <strong style="color:var(--rakhee);">Access to Hub Heroes / potential ambassadors</strong>
+                  Partner has teachers, educators, or community members who could provide testimonials, serve as Hub advocates, or support broader ambassadorship
+                </div>
+                <div class="handoff-then hr-rs" style="flex-direction:column;align-items:flex-start;gap:6px;">
+                  <div class="hp-row"><div class="handoff-av" style="background:var(--rakhee);">R</div><div><div class="hp-name">Rakhee</div><div class="hp-action">+ Sonia collaborate on next steps</div></div></div>
+                  <div class="hp-row"><div class="handoff-av" style="background:var(--sonia);">S</div><div><div class="hp-name">Sonia</div><div class="hp-action">Comms & ambassadorship strategy</div></div></div>
                 </div>
               </div>
 
@@ -509,12 +706,9 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
       <!-- STEP 5 -->
       <div class="wf-step">
         <div class="step-dot" style="background:var(--slate);">5</div>
-        <div class="wf-step-card" onclick="toggleWF(this)">
+        <div class="wf-card" onclick="toggleWF(this)">
           <div class="wf-head">
-            <div class="wf-head-text">
-              <div class="wf-title">Propose & Pursue Next Steps</div>
-              <div class="wf-sub">Tailor the partnership path based on what you learned</div>
-            </div>
+            <div class="wf-head-text"><div class="wf-title">Propose & Pursue Next Steps</div><div class="wf-sub">Tailor the partnership path based on what you learned</div></div>
             <span class="wf-chev">›</span>
           </div>
           <div class="wf-body">
@@ -524,37 +718,22 @@ body{font-family:var(--ff-body);background:transparent;color:#3d2e28;}
               <li>Send a follow-up within 48 hours with a summary and proposed next step</li>
               <li>Assign clear owner based on the handoff decision above</li>
             </ul>
-            <div class="next-steps-grid" style="margin-top:.875rem;">
-              <div class="ns-card" style="background:var(--melody-light);border:1px solid var(--green-mid);">
-                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                  <div style="width:18px;height:18px;border-radius:50%;background:var(--melody);display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:9px;color:#fff;flex-shrink:0;">M</div>
-                  <div class="ns-title">Content path — Melody</div>
-                </div>
+            <div class="next-steps-grid">
+              <div class="ns-card" style="background:var(--melody-light);border-color:var(--green-mid);">
+                <div class="ns-title"><div class="av-sm" style="background:var(--melody);">M</div>Content path — Melody</div>
                 <div class="ns-desc">Feature content → highlight in marketing → explore state toolkit or co-created unit</div>
               </div>
-              <div class="ns-card" style="background:var(--tom-light);border:1px solid var(--mauve-mid);">
-                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                  <div style="width:18px;height:18px;border-radius:50%;background:var(--tom);display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:9px;color:#fff;flex-shrink:0;">T</div>
-                  <div class="ns-title">Network sharing path — Tom</div>
-                </div>
+              <div class="ns-card" style="background:var(--tom-light);border-color:var(--mauve-mid);">
+                <div class="ns-title"><div class="av-sm" style="background:var(--tom);">To</div>Network sharing — Tom</div>
                 <div class="ns-desc">Send sharing toolkit → newsletter/resource list feature → identify Hub Heroes</div>
               </div>
-              <div class="ns-card" style="background:var(--coral-light);border:1px solid var(--coral-mid);">
-                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                  <div style="display:flex;gap:3px;">
-                    <div style="width:18px;height:18px;border-radius:50%;background:var(--terry);display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:9px;color:#fff;flex-shrink:0;">T</div>
-                    <div style="width:18px;height:18px;border-radius:50%;background:var(--tom);display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:9px;color:#fff;flex-shrink:0;">T</div>
-                  </div>
-                  <div class="ns-title">Deep PD path — Terry + Tom</div>
-                </div>
+              <div class="ns-card" style="background:var(--coral-light);border-color:var(--coral-mid);">
+                <div class="ns-title"><div class="av-sm" style="background:var(--terry);">T</div><div class="av-sm" style="background:var(--tom);">To</div>Deep PD — Terry + Tom</div>
                 <div class="ns-desc">Co-design PD session → pilot → affinity group engagement → case study</div>
               </div>
-              <div class="ns-card" style="background:var(--terry-light);border:1px solid var(--terry-mid);">
-                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                  <div style="width:18px;height:18px;border-radius:50%;background:var(--terry);display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700;font-size:9px;color:#fff;flex-shrink:0;">T</div>
-                  <div class="ns-title">Grantee path — Terry</div>
-                </div>
-                <div class="ns-desc">Terry retains ownership; route specific workstreams to Melody or Tom as needed</div>
+              <div class="ns-card" style="background:var(--rakhee-light);border-color:var(--border);">
+                <div class="ns-title"><div class="av-sm" style="background:var(--rakhee);">R</div><div class="av-sm" style="background:var(--sonia);">S</div>Hub Heroes — Rakhee + Sonia</div>
+                <div class="ns-desc">Identify candidates → testimonials → ambassadorship program → comms strategy</div>
               </div>
             </div>
             <a class="wf-link slate" onclick="sendPrompt('Can you help me draft a partnership follow-up email proposing next steps based on a discovery meeting with a potential AAPI History Hub partner?')" style="margin-top:.875rem;">Draft follow-up email ↗</a>
@@ -573,6 +752,28 @@ function switchMain(id,btn){
   document.getElementById('sec-'+id).classList.add('active');
   btn.classList.add('active');
 }
-function toggleRow(row){event.stopPropagation();row.classList.toggle('open');}
-function toggleWF(card){event.stopPropagation();card.classList.toggle('open');}
+
+var activePriority = null;
+function selectPriority(p, btn) {
+  document.querySelectorAll('.psel-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activePriority = p;
+  document.getElementById('map-placeholder').style.display = 'none';
+  var rows = document.getElementById('map-rows');
+  rows.style.display = 'flex';
+  ['ct','ee','mk'].forEach(function(key){
+    var els = document.querySelectorAll('[id^="mp-"][id$="-'+key+'"]');
+    els.forEach(function(el){ el.style.display = key === p ? 'block' : 'none'; });
+  });
+  document.querySelectorAll('.map-section').forEach(function(s){ s.classList.remove('open'); });
+}
+
+function toggleMapRow(row){
+  event.stopPropagation();
+  row.classList.toggle('open');
+}
+function toggleWF(card){
+  event.stopPropagation();
+  card.classList.toggle('open');
+}
 </script>
